@@ -7,6 +7,7 @@ function httpGetAsync(theUrl, callback)
     }
     xmlHttp.open("GET", theUrl, true); // true for asynchronous 
     xmlHttp.send(null);
+    
 }
 
 /**
@@ -69,7 +70,10 @@ function play(modus) {
   }else{
     requestUrl="http://10.0.0.8:5678/GoogleChromePlugin/?stop";
     renderStatus("stoppe...");
-    httpGetAsync(requestUrl, renderStatus);
+    httpGetAsync(requestUrl, function(text){
+      renderStatus(text);
+      console.info(text);
+    });
     console.info("stop request sent.")
     return;
   }
